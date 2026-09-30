@@ -15,6 +15,8 @@ import DiamondHeadDU150Soprano from '../src/assets/pictures/DiamondHeadDU150Sopr
 import Córdoba15CCataloniaGreen from '../src/assets/pictures/Córdoba15CCataloniaGreen.png'
 import SterlingbyMusicManSUBStingRayBlack from '../src/assets/pictures/SterlingbyMusicManSUBStingRayBlack.png'
 
+import {FaFacebookF, FaInstagram, FaTwitter} from "react-icons/fa";
+
 import type { HeaderMenuItem } from '../src/types';
 import type { ProductType } from '../src/types'
 import type { ProductCard } from '../src/types'
@@ -49,6 +51,40 @@ export const productTypes: ProductType[] = [
   "acoustic-electric",
 ];
 
+export const socialLinks = [
+  {
+    name: "Facebook",
+    icon: FaFacebookF,
+    href: "#",
+  },
+  {
+    name: "Instagram",
+    icon: FaInstagram,
+    href: "#",
+  },
+  {
+    name: "Twitter",
+    icon: FaTwitter,
+    href: "#",
+  },
+];
+
+export const catalogLinks = [
+  "Acoustic guitars",
+  "Classical guitars",
+  "Electric guitars",
+  "Bass guitars",
+  "Ukuleles",
+];
+
+export const informationLinks = [
+  "Where to buy?",
+  "Blog",
+  "FAQ",
+  "Returns",
+  "Service centers",
+];
+
 export const productCards: ProductCard[] = [
   {
     id: 1,
@@ -57,7 +93,7 @@ export const productCards: ProductCard[] = [
     price: 279,
     type: "guitalele",
     image: GretschG9126ACEGuitarUkulele,
-    rating: 4.2,
+    rating: 5,
     reviews: 31,
     numberOfStrings: 6,
     article: "GIT0046678-000",
@@ -252,7 +288,7 @@ export const productCards: ProductCard[] = [
     price: 1199,
     type: "acoustic-electric",
     image: MorrisR14GSeethroughBlue,
-    rating: 4.8,
+    rating: 5,
     reviews: 13,
     numberOfStrings: 6,
     article: "R-14G-SBU",
