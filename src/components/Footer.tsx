@@ -8,7 +8,7 @@ import { informationLinks } from "../data";
 export function Footer() {
 
   return (
-    <footer className="relative m-0 p-0">
+    <footer className="relative w-full shrink-0 mt-[130px] bg-[#3D3D3D] text-white">
 
       <img src={footerGuitar} alt="Footer Guitar" className="absolute left-0 top-[-130px] z-10 w-full" />
 

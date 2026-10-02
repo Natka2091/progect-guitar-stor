@@ -7,7 +7,7 @@ import { Routes, Route} from 'react-router';
 
 function App() {
     return (
-        <div className="min-h-screen">
+        <div className="flex flex-col min-h-screen">
 
             <Header />
             <Hero />

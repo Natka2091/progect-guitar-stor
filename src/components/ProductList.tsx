@@ -3,25 +3,46 @@ import { productCards } from "../data";
 import { ProductCard } from "./ProductCard";
 import { Pagination } from "./Pagination";
 
-const PRODUCTS_PER_PAGE = 6;
+const PRODUCTS_PER_PAGE = 9;
 
 export function ProductList() {
   const [searchParams] = useSearchParams();
 
-  const currentPage =
-    Number(searchParams.get("page")) || 1;
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const selectedTypes = searchParams.getAll("type");
+  const selectedStrings = searchParams.getAll("strings").map(Number);
+  const minPrice = Number(searchParams.get("minPrice")) || 0;
+  const maxPrice = Number(searchParams.get("maxPrice")) || Infinity;
 
-  const totalPages = Math.ceil(
-    productCards.length / PRODUCTS_PER_PAGE
-  );
+  const filteredGuitarList =
+    productCards.filter((product) => {
+      const matchesType =
+        selectedTypes.length === 0 ||
+        selectedTypes.includes(product.type);
 
-  const startIndex =
-    (currentPage - 1) * PRODUCTS_PER_PAGE;
+      const matchesStrings =
+        selectedStrings.length === 0 ||
+        selectedStrings.includes(product.numberOfStrings);
 
-  const currentProducts = productCards.slice(
-    startIndex,
-    startIndex + PRODUCTS_PER_PAGE
-  );
+      const matchesPrice =
+        product.price >= minPrice &&
+        product.price <= maxPrice;
+
+      return (
+        matchesType &&
+        matchesStrings &&
+        matchesPrice
+      );
+    });
+
+  const totalPages = Math.ceil(filteredGuitarList.length / PRODUCTS_PER_PAGE);
+
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+
+  const currentProducts = filteredGuitarList.slice(
+      startIndex,
+      startIndex + PRODUCTS_PER_PAGE
+    );
 
   return (
     <>
