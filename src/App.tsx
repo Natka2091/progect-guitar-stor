@@ -5,6 +5,7 @@ import { Hero } from '../src/components/CatalogHero'
 import { Home } from '../src/components/MainPage'
 import { Routes, Route} from 'react-router';
 
+
 function App() {
     return (
         <div className="flex flex-col min-h-screen">
@@ -15,7 +16,6 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path='/catalog' element={<Catalog />} />
             </Routes>
-
             <Footer />
         </div>
     )

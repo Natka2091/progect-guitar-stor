@@ -9,10 +9,12 @@ export function ProductList() {
   const [searchParams] = useSearchParams();
 
   const currentPage = Number(searchParams.get("page")) || 1;
+  const currentSort = searchParams.get("sort") ?? "price-asc";
   const selectedTypes = searchParams.getAll("type");
   const selectedStrings = searchParams.getAll("strings").map(Number);
   const minPrice = Number(searchParams.get("minPrice")) || 0;
-  const maxPrice = Number(searchParams.get("maxPrice")) || Infinity;
+  const maxPrice = Number(searchParams.get("maxPrice")) || 10000;
+  
 
   const filteredGuitarList =
     productCards.filter((product) => {
@@ -33,6 +35,21 @@ export function ProductList() {
         matchesStrings &&
         matchesPrice
       );
+    })
+    .sort((a, b) => {
+      if (currentSort === "price-asc") {
+        return a.price - b.price;
+      }
+
+      if (currentSort === "price-desc") {
+        return b.price - a.price;
+      }
+
+      if (currentSort === "popular") {
+        return b.reviews - a.reviews;
+      }
+
+      return 0;
     });
 
   const totalPages = Math.ceil(filteredGuitarList.length / PRODUCTS_PER_PAGE);

@@ -4,21 +4,21 @@ import { Link } from 'react-router'
 
 export function Hero() {
   return (
-    <section className="relative z-20 h-[282px] w-full overflow-visible bg-white">
+    <section className="relative z-20 h-70.5 w-full mb-10 overflow-visible bg-white">
 
       <img
         src={LineHero}
         alt=""
-        className="absolute top-[20px] w-full"
+        className="absolute top-5 w-full"
       />
 
       <img
         src={HeroGuitar}
         alt="Guitar"
-        className="absolute right-0 -top-[35px] z-30 w-[900px]"
+        className="absolute right-0 -top-8.75 z-30 w-225"
       />
 
-      <div className="absolute bottom-[-30px] left-10">
+      <div className="absolute -bottom-7.5 left-10">
         <h1 className="text-2xl font-bold">
           Guitar Catalog
         </h1>

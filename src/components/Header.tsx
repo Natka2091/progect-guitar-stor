@@ -8,10 +8,10 @@ import { FiMapPin, FiSearch } from "react-icons/fi";
 
 export function Header() {
     return (
-    <header className="relative z-10 h-[110px] w-full bg-[#1E0906]/15">
+    <header className="relative z-10 h-27.5 w-full bg-[#1E0906]/15">
         <div className="mx-auto flex h-full items-center justify-between px-16">
             <Link to='/'>
-               <img src={LogoHeader} alt='Guitar shop' className="h-auto w-[70px]" />
+               <img src={LogoHeader} alt='Guitar shop' className="h-auto w-17.5" />
             </Link>
 
             <nav className="flex items-center gap-8">

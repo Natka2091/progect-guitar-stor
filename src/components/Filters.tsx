@@ -78,7 +78,11 @@ export function Filters() {
   };
 
   return (
-    <aside className="w-[320px] shrink-0">
+    <aside>
+
+      <h2 className="mb-5 text-[24px] font-semibold">
+        Filter
+      </h2>
 
       <section className="border-t border-[#E5E5E5] pt-9">
         <h3 className="mb-7 text-[24px] font-semibold">
@@ -91,7 +95,7 @@ export function Filters() {
             value={minPrice}
             onChange={(event) => setMinPrice(event.target.value)}
             placeholder="0"
-            className="h-[38px] w-[110px] border border-[#BDBDBD] px-3 text-center text-[16px] outline-none"
+            className="h-9.5 w-27.5 border border-[#BDBDBD] px-3 text-center text-[16px] outline-none"
           />
 
           <span className="text-[24px] text-[#777]">
@@ -103,7 +107,7 @@ export function Filters() {
             value={maxPrice}
             onChange={(event) => setMaxPrice(event.target.value)}
             placeholder="10 000"
-            className="h-[38px] w-[110px] border border-[#BDBDBD] px-3 text-center text-[16px] outline-none"
+            className="h-9.5 w-27.5 border border-[#BDBDBD] px-3 text-center text-[16px] outline-none"
           />
         </div>
       </section>
@@ -123,7 +127,7 @@ export function Filters() {
                 type="checkbox"
                 checked={selectedTypes.includes(type)}
                 onChange={() => handleTypeChange(type)}
-                className="h-8 w-8 shrink-0 appearance-none border border-[#BDBDBD] checked:bg-[#777] checked:after:block checked:after:text-center checked:after:text-[20px] checked:after:leading-[30px] checked:after:text-white checked:after:content-['✓']"
+                className="h-8 w-8 shrink-0 appearance-none border border-[#BDBDBD] checked:bg-[#777] checked:after:block checked:after:text-center checked:after:text-[20px] checked:after:leading-7.5 checked:after:text-white checked:after:content-['✓']"
               />
 
               <span>
@@ -149,7 +153,7 @@ export function Filters() {
                 type="checkbox"
                 checked={selectedStrings.includes(strings)}
                 onChange={() => handleStringsChange(strings)}
-                className="h-8 w-8 shrink-0 appearance-none border border-[#BDBDBD] checked:bg-[#777] checked:after:block checked:after:text-center checked:after:text-[20px] checked:after:leading-[30px] checked:after:text-white checked:after:content-['✓']"
+                className="h-8 w-8 shrink-0 appearance-none border border-[#BDBDBD] checked:bg-[#777] checked:after:block checked:after:text-center checked:after:text-[20px] checked:after:leading-7.5 checked:after:text-white checked:after:content-['✓']"
               />
 
               <span>{strings}</span>
@@ -161,7 +165,7 @@ export function Filters() {
       <button
         type="button"
         onClick={handleApplyFilters}
-        className="mt-12 h-[40px] w-[157px] bg-[#BDBDBD] text-[14px] font-semibold uppercase text-white transition hover:bg-[#999]"
+        className="mt-12 h-10 w-39.25 bg-[#BDBDBD] text-[14px] font-semibold uppercase text-white transition hover:bg-[#999]"
       >
         Show
       </button>

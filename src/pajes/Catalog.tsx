@@ -1,12 +1,10 @@
 import { ProductList } from "../components/ProductList";
 import { Filters } from "../components/Filters";
+import { Sort } from "../components/Sort";
 
 export function Catalog() {
   return (
-    <main className="flex-grow mx-auto max-w-[1280px] px-6 pt-10 pb-[60px]">
-      <h1 className="mb-8 text-3xl font-semibold">
-        Guitar Catalog
-      </h1>
+    <main className="flex-grow mx-auto max-w-7*1 px-6 pt-10 pb-15">
 
       <div className="flex gap-10">
 
@@ -15,6 +13,7 @@ export function Catalog() {
         </aside>
 
         <section className="min-w-0 flex-1">
+          <Sort />
           <ProductList />
         </section>
 

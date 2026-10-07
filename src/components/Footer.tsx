@@ -1,24 +1,33 @@
-import footerGuitar from "../assets/pictures/footerGuitar.png";
+
 import footerLine from "../assets/pictures/LineFooter.png";
 import logo from "../assets/icons/LogoFooter.svg";
 import { socialLinks } from "../data";
 import { catalogLinks } from "../data";
 import { informationLinks } from "../data";
+import footerGuitar from "../assets/pictures/footerGuitar.png";
 
 export function Footer() {
-
   return (
-    <footer className="relative w-full shrink-0 mt-[130px] bg-[#3D3D3D] text-white">
+    <footer className="relative isolate mt-32.5 w-full">
 
-      <img src={footerGuitar} alt="Footer Guitar" className="absolute left-0 top-[-130px] z-10 w-full" />
+      <img
+        src={footerGuitar}
+        alt=""
+        className="pointer-events-none absolute left-0 bottom-22 z-0 w-250"
+      />
 
-      <img src={footerLine} alt="" className="absolute left-0 top-[-15px] z-30 w-full" />
+      <div className="relative z-10 bg-[#3D3D3D] text-white">
 
-      <div className="relative z-20 bg-[#3D3D3D] text-white">
-        <div className="mx-auto grid grid-cols-1 gap-10 pl-20 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
+        <img
+          src={footerLine}
+          alt=""
+          className="absolute left-0 -top-3.75 z-30 w-full"
+        />
 
-          <div>
-            <img src={logo} alt="Guitar Shop" className="w-[120px]"/>
+        <div className="mx-auto grid w-full max-w-384 grid-cols-1 gap-10 px-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
+
+        <div>
+            <img src={logo} alt="Guitar Shop" className="w-30"/>
 
             <div className="mt-16 flex gap-5">
               {socialLinks.map((social) => {
