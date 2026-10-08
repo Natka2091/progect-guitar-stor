@@ -4,9 +4,17 @@ import  icon_basket  from '../assets/icons/icon_basket.svg'
 import { Link, NavLink } from 'react-router'
 import { headerMenu } from '../data'
 import { FiMapPin, FiSearch } from "react-icons/fi";
-
+import { useCartStore } from "../store/cartStore";
 
 export function Header() {
+
+    const items = useCartStore((state) => state.items);
+
+    const cartCount = items.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+
     return (
     <header className="relative z-10 h-27.5 w-full bg-[#1E0906]/15">
         <div className="mx-auto flex h-full items-center justify-between px-16">
@@ -31,8 +39,20 @@ export function Header() {
                     <FiSearch />
                 </button>
 
-                <Link to='/shopping-cart'>
-                    <img src={icon_basket} alt='icon-basket' />
+                <Link
+                    to="/shopping-cart"
+                    className="relative"
+                >
+                    <img
+                        src={icon_basket}
+                        alt="icon-basket"
+                    />
+
+                    {cartCount > 0 && (
+                        <span className="absolute -right-3 -top-2 text-xs text-red-500">
+                            {cartCount}
+                        </span>
+                    )}
                 </Link>
             </div>
         </div>

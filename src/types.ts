@@ -4,14 +4,14 @@ export type HeaderMenuItem = {
 }
 
 export type ProductType =
-  | "guitalele"
-  | "ukulele"
-  | "banjo"
-  | "electric-guitar"
-  | "hollow-body"
-  | "bass"
-  | "resonator"
-  | "acoustic-electric";
+  | "Guitalele"
+  | "Ukulele"
+  | "Banjo"
+  | "Electric guitars"
+  | "Hollow-body guitars"
+  | "Bass guitars"
+  | "Resonator guitars"
+  | "Acoustic-electric guitars";
 
 export type ProductCard = {
   id: number;

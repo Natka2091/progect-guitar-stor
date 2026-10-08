@@ -4,12 +4,15 @@ import { Rating } from "../components/Raiting";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Modal } from "./Modal";
+import { useCartStore } from "../store/cartStore";
+import { Link } from "react-router";
 
 type Props = {
   product: ProductCardType;
 };
 
 export function ProductCard({ product }: Props) {
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
@@ -92,7 +95,7 @@ export function ProductCard({ product }: Props) {
                     </p>
 
                     <p className="text-xs text-gray-500">
-                      Electric Guitar
+                      {product.type}
                     </p>
 
                     <p className="mt-1 text-sm font-bold">
@@ -102,7 +105,10 @@ export function ProductCard({ product }: Props) {
 
                   <button
                     type="button"
-                    onClick={() => setIsSuccessOpen(true)}
+                    onClick={() => {
+                      addToCart(product)
+                      setIsSuccessOpen(true)
+                    }}
                     className="shrink-0 bg-[#F39800] px-5 py-3 text-xs font-medium text-white"
                   >
                     Add to cart
@@ -123,12 +129,12 @@ export function ProductCard({ product }: Props) {
 
                 <div className="flex gap-4">
 
-                  <button
-                    type="button"
+                  <Link
+                    to="/shopping-cart"
                     className="bg-[#F39800] px-5 py-3 text-xs font-medium text-white"
                   >
                     Go to cart
-                  </button>
+                  </Link>
 
                   <button
                     type="button"

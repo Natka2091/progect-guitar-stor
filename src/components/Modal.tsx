@@ -7,11 +7,7 @@ type Props = {
   className?: string;
 };
 
-export function Modal({
-  onClose,
-  children,
-  className = "",
-}: Props) {
+export function Modal({onClose, children, className = "" }: Props) {
   return (
     <div
       className={`relative bg-white shadow-lg ${className}`}

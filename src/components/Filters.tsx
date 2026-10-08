@@ -1,20 +1,16 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router";
+import { productCards } from "../data";
+import type { ProductType } from "../types";
 
-const typeLabels = {
-  guitalele: "Guitalele",
-  ukulele: "Ukulele",
-  banjo: "Banjo",
-  "electric-guitar": "Electric guitars",
-  "hollow-body": "Hollow-body guitars",
-  bass: "Bass guitars",
-  resonator: "Resonator guitars",
-  "acoustic-electric": "Acoustic-electric guitars",
-} as const;
 
-const productTypes = Object.keys(typeLabels);
+const productTypes = [
+  ...new Set(productCards.map((product) => product.type))
+]
 
-const stringOptions = [4, 5, 6];
+const stringOptions = [
+  ...new Set(productCards.map((product) => product.numberOfStrings)),
+].sort((a, b) => a - b);
 
 export function Filters() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,8 +23,8 @@ export function Filters() {
     searchParams.get("maxPrice") || ""
   );
 
-  const [selectedTypes, setSelectedTypes] = useState<string[]>(
-      searchParams.getAll("type")
+  const [selectedTypes, setSelectedTypes] = useState<ProductType[]>(
+      searchParams.getAll("type") as ProductType[]
     );
 
   const [selectedStrings, setSelectedStrings] = useState<number[]>(
@@ -37,7 +33,7 @@ export function Filters() {
         .map(Number)
     );
 
-  const handleTypeChange = (type: string) => {
+  const handleTypeChange = (type: ProductType) => {
     setSelectedTypes((current) =>
       current.includes(type)
         ? current.filter((item) => item !== type)
@@ -131,7 +127,7 @@ export function Filters() {
               />
 
               <span>
-                {typeLabels[type as keyof typeof typeLabels]}
+                {type}
               </span>
             </label>
           ))}
