@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { FiX } from "react-icons/fi";
+import { twMerge } from 'tailwind-merge';
+
 
 type Props = {
   onClose: () => void;
@@ -10,7 +12,7 @@ type Props = {
 export function Modal({onClose, children, className = "" }: Props) {
   return (
     <div
-      className={`relative bg-white shadow-lg ${className}`}
+      className={twMerge("relative bg-white shadow-lg", className)}
     >
       <button
         type="button"
