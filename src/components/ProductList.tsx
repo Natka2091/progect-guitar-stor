@@ -37,19 +37,22 @@ export function ProductList() {
       );
     })
     .sort((a, b) => {
-      if (currentSort === "price-asc") {
-        return a.price - b.price;
-      }
+      switch (currentSort) {
+        case "price-asc":
+          return a.price - b.price;
 
-      if (currentSort === "price-desc") {
-        return b.price - a.price;
-      }
+        case "price-desc":
+          return b.price - a.price;
 
-      if (currentSort === "popular") {
-        return b.reviews - a.reviews;
-      }
+        case "popular-asc":
+          return a.reviews - b.reviews;
 
-      return 0;
+        case "popular-desc":
+          return b.reviews - a.reviews;
+
+        default:
+          return 0;
+      }
     });
 
   const totalPages = Math.ceil(filteredGuitarList.length / PRODUCTS_PER_PAGE);
