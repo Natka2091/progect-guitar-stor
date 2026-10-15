@@ -1,5 +1,7 @@
 import { useCartStore } from "../store/cartStore";
 import { Link } from "react-router";
+import { useState } from "react";
+import type { ProductCard } from "../types";
 
 export function ShoppingCart() {
   const items = useCartStore((state) => state.items);
@@ -7,6 +9,7 @@ export function ShoppingCart() {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+  const [productToRemove, setProductToRemove] = useState<ProductCard | null>(null);
 
   const total = items.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
@@ -77,7 +80,7 @@ export function ShoppingCart() {
                 >
                   <button
                     type="button"
-                    onClick={() => removeFromCart(product.id)}
+                    onClick={() => setProductToRemove(product)}
                     className="self-start text-sm text-[#999] transition hover:text-[#333]"
                     aria-label={`Remove ${product.name}`}
                   >
@@ -193,6 +196,89 @@ export function ShoppingCart() {
             </div>
           </section>
         </>
+      )}
+
+      {productToRemove && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+          onClick={() => setProductToRemove(null)}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="remove-product-title"
+            className="relative w-full max-w-3xl bg-white p-8 shadow-xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setProductToRemove(null)}
+              className="absolute right-5 top-4 text-2xl leading-none text-[#9CA3AF] hover:text-black"
+              aria-label="Close dialog"
+            >
+              ×
+            </button>
+
+            <h2
+              id="remove-product-title"
+              className="mb-6 text-lg font-semibold"
+            >
+              Delete this product?
+            </h2>
+
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center">
+                <img
+                  src={productToRemove.image}
+                  alt={productToRemove.name}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <h3 className="font-semibold uppercase">
+                  {productToRemove.name}
+                </h3>
+
+                <p className="mt-1 text-sm text-[#7A8495]">
+                  Article: {productToRemove.article}
+                </p>
+
+                <p className="text-sm text-[#7A8495]">
+                  {productToRemove.type}
+                  {productToRemove.numberOfStrings
+                    ? `, ${productToRemove.numberOfStrings} strings`
+                    : ""}
+                </p>
+
+                <p className="mt-3 font-semibold">
+                  Price: {productToRemove.price.toLocaleString("en-US")} €
+                </p>
+              </div>
+
+              <div className="flex shrink-0 flex-col gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    removeFromCart(productToRemove.id);
+                    setProductToRemove(null);
+                  }}
+                  className="bg-[#F39800] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#D98200]"
+                >
+                  Delete product
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setProductToRemove(null)}
+                  className="border border-[#D5D5D5] px-6 py-3 text-sm transition hover:bg-[#F5F5F5]"
+                >
+                  Continue shopping
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
       )}
     </main>
   );

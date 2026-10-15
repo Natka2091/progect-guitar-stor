@@ -16,20 +16,34 @@ export function Sort() {
     setSearchParams(params);
   };
 
+  const handlePriceSort = () => {
+    const nextSort = currentSort === "price-asc" ? "price-desc" : "price-asc";
+
+    handleSort(nextSort);
+  };
+
+  const handlePopularitySort = () => {
+    const nextSort = currentSort === "popular-desc" ? "popular-asc" : "popular-desc";
+
+    handleSort(nextSort);
+  };
+
+  const isPriceSort = currentSort === "price-asc" || currentSort === "price-desc";
+
+  const isPopularitySort = currentSort === "popular-asc" || currentSort === "popular-desc";
+
   return (
-    <div className="flex items-center justify-between mb-5 mt-2">
-
+    <div className="mt-2 mb-5 flex items-center justify-between">
       <div className="flex items-center gap-6">
-
         <span className="text-[18px] text-[#333]">
           Sort by:
         </span>
 
         <button
           type="button"
-          onClick={() => handleSort("price-asc")}
+          onClick={handlePriceSort}
           className={
-            currentSort === "price-asc" || currentSort === "price-desc"
+            isPriceSort
               ? "text-[18px] text-[#333]"
               : "text-[18px] text-[#999]"
           }
@@ -39,40 +53,34 @@ export function Sort() {
 
         <button
           type="button"
-          onClick={() => handleSort("popular")}
+          onClick={handlePopularitySort}
           className={
-            currentSort === "popular"
+            isPopularitySort
               ? "text-[18px] text-[#333]"
               : "text-[18px] text-[#999]"
           }
         >
           by popularity
         </button>
-
       </div>
 
       <div className="flex items-center gap-4">
         <button
-            type="button"
-            onClick={() => handleSort("price-asc")}
+          type="button"
+          onClick={() => handleSort(isPriceSort ? "price-asc" : "popular-asc")}
+          aria-label="Sort ascending"
         >
-            <img
-            src={arrowUp}
-            alt="Ascending price"
-            />
+          <img src={arrowUp} alt="" />
         </button>
 
         <button
-            type="button"
-            onClick={() => handleSort("price-desc")}
+          type="button"
+          onClick={() => handleSort(isPriceSort ? "price-desc" : "popular-desc")}
+          aria-label="Sort descending"
         >
-            <img
-            src={arrowDown}
-            alt="Descending price"
-            />
+          <img src={arrowDown} alt="" />
         </button>
-        </div>
-
+      </div>
     </div>
   );
 }
